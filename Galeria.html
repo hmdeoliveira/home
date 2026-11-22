@@ -368,22 +368,23 @@
       text-transform: uppercase;
     }
 
-    /* Grade de Casais (reduzida ~25% para retratos mais compactos) */
+    /* Grade de Casais — tamanho estritamente padronizado (pranchas idênticas de 450px) */
     .couples-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 445px));
+      grid-template-columns: repeat(2, 450px);
       justify-content: center;
       gap: var(--space-lg);
     }
 
     .couples-grid.single {
-      grid-template-columns: minmax(0, 460px);
+      grid-template-columns: 450px;
       justify-content: center;
     }
 
-    @media (max-width: 960px) {
-      .couples-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 980px) {
+      .couples-grid,
+      .couples-grid.single {
+        grid-template-columns: minmax(0, 450px);
       }
     }
 
@@ -425,22 +426,25 @@
 
     .couple-pair {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-md);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
     }
 
-    @media (max-width: 540px) {
+    @media (max-width: 500px) {
       .couple-pair {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 220px);
+        justify-content: center;
       }
     }
 
-    /* Grade Sequencial Sosa (reduzida ~25%) */
+    /* Grade Sequencial Sosa — mesma largura exata (200px) dos retratos no modo Casais */
     .sosa-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 210px));
+      grid-template-columns: repeat(auto-fill, 200px);
       justify-content: center;
       gap: var(--space-md);
+      align-items: stretch;
     }
 
     /* Cartão de Retrato */
@@ -459,32 +463,32 @@
       transform: translateY(-2px);
     }
 
+    /* Moldura padronizada 4:5 (retrato clássico) com travamento absoluto de proporção */
     .portrait-frame {
       position: relative;
       width: 100%;
       aspect-ratio: 4 / 5;
       background-color: var(--surface-container);
       border-bottom: var(--rule-ink);
-      padding: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
     }
 
     .portrait-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      inset: 8px;
       border: 1px solid var(--outline-variant);
       overflow: hidden;
       background-color: #e9e1d2;
     }
 
     .portrait-img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 20%;
+      object-position: 50% 18%;
       display: block;
       transition: transform 320ms ease;
     }
@@ -669,11 +673,22 @@
       padding: 10px;
     }
 
-    .modal-photo-frame img {
+    #modal-media {
+      position: relative;
       width: 100%;
-      height: auto;
-      max-height: 360px;
+      aspect-ratio: 4 / 5;
+      border: 1px solid var(--outline-variant);
+      background-color: #e9e1d2;
+      overflow: hidden;
+    }
+
+    .modal-photo-frame img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
+      object-position: center;
       display: block;
       background-color: #e9e1d2;
     }
