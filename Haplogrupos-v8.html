@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="monograph-chapter">
+  <meta name="design-style" content="broadsheet">
+  <title>HAPLOGRUPOS — Árvore de Costados · Hélio Magalhães de Oliveira</title>
+
+  <!-- Mesmas fontes do index.html e Galeria_5.html: Bitter, Source Serif 4 e Source Sans 3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,500..800;1,400..700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons (mesma versão do index.html e Galeria_5.html) -->
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Paleta Broadsheet idêntica ao index.html e Galeria_5.html */
+      --background: #f7f3eb;
+      --surface-container-low: #efe8da;
+      --surface-container: #e6ddcc;
+      --surface-container-high: #ddd2be;
+
+      --on-surface: #1a1817;
+      --on-surface-variant: #4d4845;
+
+      --outline: #33302e;
+      --outline-variant: #cdc3b2;
+
+      --primary: #990f3d;
+      --on-primary: #ffffff;
+      --primary-container: #f4dce2;
+      --on-primary-container: #6b0a2a;
+      --secondary: #0d7680;
+      --tertiary: #0f5499;
+      --tertiary-container: #dbe7f4;
+      --warning: #9a6312;
+      --positive: #2d6a4f;
+
+      --heraldic-gold: #c59b27;
+      --heraldic-gold-pale: #faecc7;
+
+      --space-xs: clamp(0.25rem, 0.5vw, 0.375rem);
+      --space-sm: clamp(0.5rem, 1vw, 0.75rem);
+      --space-md: clamp(1rem, 1.5vw, 1.25rem);
+      --space-lg: clamp(1.5rem, 2.5vw, 2rem);
+      --space-xl: clamp(2rem, 4vw, 3rem);
+      --space-2xl: clamp(3rem, 6vw, 4.5rem);
+
+      --font-headline: 'Bitter', Georgia, serif;
+      --font-body: 'Source Serif 4', Georgia, serif;
+      --font-label: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      --rule-masthead: 3px double var(--on-surface);
+      --rule-ink: 1px solid var(--on-surface);
+      --rule-section: 2px solid var(--outline);
+      --rule-column: 1px solid var(--outline-variant);
+
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      overflow-x: clip;
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.62;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    /* Faixa Superior com Links de Retorno */
+    .top-strip {
+      border-bottom: var(--rule-column);
+      padding: var(--space-xs) 0;
+      background-color: var(--surface-container-low);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    .top-strip-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .top-strip-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .return-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--primary);
+      background-color: var(--background);
+      transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .return-link:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      text-decoration: none;
+    }
+
+    /* Masthead */
+    .masthead {
+      padding: var(--space-lg) 0 var(--space-md);
+      border-bottom: var(--rule-masthead);
+      margin-bottom: var(--space-lg);
+      text-align: center;
+    }
+
+    .masthead-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xs);
+    }
+
+    .masthead-line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--outline-variant);
+    }
+
+    .masthead-category {
+      color: var(--primary);
+      font-family: var(--font-label);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .masthead-title {
+      font-family: var(--font-headline);
+      font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: var(--space-xs) 0;
+      line-height: 1.08;
+    }
+
+    .masthead-sub {
+      font-style: italic;
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      color: var(--on-surface-variant);
+      max-width: 78ch;
+      margin: 0 auto var(--space-md);
+    }
+
+    .masthead-meta-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      padding-top: var(--space-sm);
+      border-top: var(--rule-column);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    .masthead-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Quadro de Métricas (Ledger) */
+    .ledger-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: var(--rule-column);
+      border-top: var(--rule-section);
+      background-color: var(--surface-container-low);
+      margin-bottom: var(--space-lg);
+    }
+
+    @media (max-width: 900px) {
+      .ledger-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .ledger-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ledger-cell {
+      padding: var(--space-md);
+      border-right: var(--rule-column);
+      border-bottom: var(--rule-column);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ledger-cell:last-child {
+      border-right: none;
+    }
+
+    .ledger-num {
+      font-family: var(--font-headline);
+      font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.15;
+      margin-bottom: 0.25rem;
+    }
+
+    .ledger-num.patrilineal {
+      color: var(--tertiary);
+    }
+
+    .ledger-caption {
+      font-family: var(--font-label);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.2rem;
+    }
+
+    .ledger-sub {
+      font-size: 0.84rem;
+      color: var(--on-surface-variant);
+      line-height: 1.38;
+    }
+
+    /* Barra Fixa de Navegação de Seções */
+    .sec-nav-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background-color: var(--background);
+      border-top: var(--rule-ink);
+      border-bottom: var(--rule-masthead);
+      padding: 0.45rem 0;
+      margin-bottom: var(--space-xl);
+      box-shadow: 0 4px 12px rgba(26, 24, 23, 0.07);
+    }
+
+    .sec-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.45rem;
+    }
+
+    .nav-pill {
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      padding: 0.44rem 0.78rem;
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--on-surface);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .nav-pill:hover {
+      background-color: var(--surface-container-high);
+      border-color: var(--outline);
+      color: var(--primary);
+    }
+
+    .nav-pill.active {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .nav-pill-code {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.1rem 0.32rem;
+      background-color: var(--surface-container);
+      color: var(--primary);
+    }
+
+    .nav-pill.active .nav-pill-code {
+      background-color: rgba(255, 255, 255, 0.22);
+      color: var(--on-primary);
+    }
+
+    /* Seções Principais */
+    .chapter-section {
+      margin-bottom: var(--space-2xl);
+      scroll-margin-top: 84px;
+    }
+
+    .sec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      border-bottom: var(--rule-ink);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-lg);
+      position: relative;
+    }
+
+    .sec-header::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 56px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .sec-title {
+      font-family: var(--font-headline);
+      font-size: clamp(1.38rem, 2.3vw, 1.9rem);
+      font-weight: 700;
+    }
+
+    .sec-badge {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.22rem 0.58rem;
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      text-transform: uppercase;
+    }
+
+    .sec-badge.ydna {
+      background-color: var(--tertiary-container);
+      color: var(--tertiary);
+    }
+
+    h3 {
+      font-family: var(--font-headline);
+      font-size: clamp(1.1rem, 1.6vw, 1.32rem);
+      font-weight: 700;
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-sm);
+      color: var(--on-surface);
+    }
+
+    p {
+      margin-bottom: var(--space-md);
+    }
+
+    /* Grids de Conteúdo */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+      margin-bottom: var(--space-lg);
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    @media (max-width: 900px) {
+      .two-col, .three-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Painéis e Caixas Editoriais */
+    .panel-box {
+      border: var(--rule-column);
+      border-top: var(--rule-section);
+      background-color: var(--surface-container-low);
+      padding: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .panel-box-title {
+      font-family: var(--font-label);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .panel-box-title.ydna {
+      color: var(--tertiary);
+    }
+
+    .callout-box {
+      border-left: 3px solid var(--primary);
+      background-color: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-md) 0;
+      font-size: 0.94rem;
+    }
+
+    .callout-box.ydna {
+      border-left-color: var(--tertiary);
+    }
+
+    /* Cadeia Filogenética */
+    .phylo-chain {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.75;
+      background-color: var(--background);
+      border: var(--rule-column);
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+      overflow-x: auto;
+    }
+
+    .phylo-node {
+      display: inline-block;
+      padding: 0.08rem 0.36rem;
+      margin: 0.1rem 0.06rem;
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      color: var(--on-surface);
+    }
+
+    .phylo-node.major {
+      background-color: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--tertiary);
+      font-weight: 700;
+    }
+
+    .phylo-node.terminal {
+      background-color: var(--tertiary);
+      border-color: var(--tertiary);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .phylo-node.mt-major {
+      background-color: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+      font-weight: 700;
+    }
+
+    .phylo-node.mt-terminal {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .phylo-arrow {
+      color: var(--on-surface-variant);
+      margin: 0 0.1rem;
+    }
+
+    /* Timeline de SNPs / Gerações */
+    .timeline-list {
+      list-style: none;
+      position: relative;
+      padding-left: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      top: 0.3rem;
+      bottom: 0.3rem;
+      left: 6px;
+      width: 2px;
+      background-color: var(--outline-variant);
+    }
+
+    .timeline-item {
+      position: relative;
+      background-color: var(--background);
+      border: var(--rule-column);
+      padding: 0.55rem 0.8rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem;
+      top: 0.85rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--tertiary);
+      border: 2px solid var(--background);
+    }
+
+    .timeline-item.mt::before {
+      background-color: var(--primary);
+    }
+
+    .tl-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tl-code {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--tertiary);
+    }
+
+    .timeline-item.mt .tl-code {
+      color: var(--primary);
+    }
+
+    .tl-date {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .tl-desc {
+      font-size: 0.88rem;
+      margin-top: 0.2rem;
+      color: var(--on-surface);
+    }
+
+    /* Pranchas de Figuras (Estilo compatível com Galeria_5.html) */
+    .figures-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    .figures-grid.single {
+      grid-template-columns: minmax(0, 1020px);
+      justify-content: center;
+    }
+
+    .figures-grid.triple {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 900px) {
+      .figures-grid, .figures-grid.triple {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .fig-card {
+      background-color: var(--background);
+      border: var(--rule-column);
+      border-top: var(--rule-section);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .fig-card:hover {
+      border-color: var(--outline);
+      box-shadow: 0 6px 18px rgba(26, 24, 23, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .fig-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background-color: var(--surface-container);
+      border-bottom: var(--rule-ink);
+      overflow: hidden;
+    }
+
+    .fig-frame.badge-ratio {
+      aspect-ratio: 16 / 10;
+    }
+
+    .fig-inner.badge-inner {
+      padding: 16px;
+    }
+
+    .fig-inner.badge-inner .fig-img {
+      max-height: 220px;
+      width: auto;
+      max-width: 100%;
+    }
+
+    .fig-frame.wide-ratio {
+      aspect-ratio: 16 / 9;
+    }
+
+    .fig-frame.map-pair-ratio {
+      aspect-ratio: 16 / 9;
+    }
+
+    .fig-inner.map-pair-inner {
+      padding: 6px;
+      background-color: #f3ede0;
+    }
+
+    .fig-inner.map-pair-inner .fig-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .fig-inner {
+      position: absolute;
+      inset: 8px;
+      border: 1px solid var(--outline-variant);
+      background-color: #f3ede0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fig-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .fig-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      background-color: var(--on-surface);
+      color: var(--background);
+      padding: 0.14rem 0.45rem;
+    }
+
+    .fig-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-md);
+      background: radial-gradient(circle at 50% 45%, #f7f3eb 0%, #e6ddcc 100%);
+      color: var(--on-surface-variant);
+    }
+
+    .fig-placeholder-title {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-top: 0.45rem;
+    }
+
+    .fig-placeholder-file {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      margin-top: 0.25rem;
+      color: var(--on-surface);
+      background-color: var(--surface-container-low);
+      padding: 0.12rem 0.4rem;
+      border: 1px solid var(--outline-variant);
+    }
+
+    .fig-caption {
+      padding: 0.75rem 0.9rem 0.85rem;
+      font-size: 0.86rem;
+      line-height: 1.45;
+      color: var(--on-surface-variant);
+    }
+
+    .fig-caption strong {
+      color: var(--on-surface);
+    }
+
+    /* Cartões de Conexões Notáveis */
+    .notable-card {
+      border: var(--rule-column);
+      background-color: var(--background);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .notable-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      border-bottom: var(--rule-column);
+      padding-bottom: 0.35rem;
+    }
+
+    .notable-name {
+      font-family: var(--font-headline);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .notable-stat {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.14rem 0.45rem;
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .notable-stat.ydna {
+      background-color: var(--tertiary-container);
+      color: var(--tertiary);
+    }
+
+    /* Barras de Admixture Eurogenes K13 */
+    .admix-row {
+      margin-bottom: 0.65rem;
+    }
+
+    .admix-head {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-label);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .admix-track {
+      height: 15px;
+      background-color: var(--surface-container-high);
+      border: 1px solid var(--outline-variant);
+      overflow: hidden;
+    }
+
+    .admix-fill {
+      height: 100%;
+    }
+
+    /* Lightbox Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(26, 24, 23, 0.84);
+      z-index: 1000;
+      padding: var(--space-md);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-window {
+      background-color: var(--background);
+      border: 2px solid var(--on-surface);
+      width: 100%;
+      max-width: 960px;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: var(--space-lg);
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.35);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      width: 34px;
+      height: 34px;
+      background: var(--background);
+      border: 1px solid var(--outline);
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--on-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .modal-img-wrap {
+      border: var(--rule-ink);
+      background-color: var(--surface-container);
+      padding: 10px;
+      margin-top: var(--space-sm);
+      margin-bottom: var(--space-md);
+      text-align: center;
+    }
+
+    .modal-img-wrap img {
+      max-width: 100%;
+      max-height: 64vh;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Rodapé */
+    .colophon {
+      border-top: var(--rule-masthead);
+      margin-top: var(--space-2xl);
+      padding: var(--space-lg) 0 var(--space-xl);
+      background-color: var(--surface-container-low);
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+    }
+
+    .colophon-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .sec-nav-sticky, .modal-backdrop, .return-link { display: none !important; }
+      .panel-box, .fig-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Faixa Superior com Retorno ao index.html e acesso à Galeria -->
+  <aside class="top-strip">
+    <div class="container top-strip-inner">
+      <div class="top-strip-nav">
+        <a href="https://hmdeoliveira.github.io/home/" class="return-link">
+          <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
+          Voltar à Árvore de Costados
+        </a>
+        <a href="Galeria.html" class="return-link">
+          <i data-lucide="camera" style="width: 14px; height: 14px;"></i>
+          Galeria de Retratos
+        </a>
+      </div>
+      <span>CAPÍTULO 4 &middot; GENEALOGIA GENÉTICA &middot; ISBN 978-65-01-32873-7</span>
+    </div>
+  </aside>
+
+  <!-- Cabeçalho Editorial -->
+  <header class="container masthead">
+    <div class="masthead-ornament">
+      <div class="masthead-line"></div>
+      <span class="masthead-category">ÁRVORE DE COSTADOS &middot; DOSSIÊ DE GENEALOGIA GENÉTICA</span>
+      <div class="masthead-line"></div>
+    </div>
+    <h1 class="masthead-title">HAPLOGRUPOS</h1>
+    <p class="masthead-sub">Linhagens uniparentais (<strong>Y-DNA</strong> e <strong>mtDNA</strong>) e cariótipo genômico de <strong>Hélio Magalhães de Oliveira</strong></p>
+    <div class="masthead-meta-bar">
+      <span class="masthead-meta-item"><i data-lucide="dna" style="width: 14px; height: 14px; color: var(--tertiary);"></i> Y-DNA (Oliveira): <strong>R-FTH21673</strong></span>
+      <span class="masthead-meta-item"><i data-lucide="dna" style="width: 14px; height: 14px; color: var(--primary);"></i> mtDNA (Matrilinear): <strong>L3b1a11b1</strong></span>
+      <span class="masthead-meta-item"><i data-lucide="activity" style="width: 14px; height: 14px;"></i> GEDmatch Kit DF8024661 (Eurogenes K13)</span>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Painel Síntese (Ledger) -->
+    <section class="ledger-grid" aria-label="Resumo Genômico">
+      <div class="ledger-cell">
+        <div>
+          <div class="ledger-num patrilineal">R-FTH21673</div>
+          <div class="ledger-caption">Y-DNA Patrilinear (Big Y-700)</div>
+        </div>
+        <div class="ledger-sub">Subclado Ibero-Atlântico (R-DF27 &rarr; R-P312 &rarr; R-M269), TMRCA c. 1200 d.C. no Norte de Portugal.</div>
+      </div>
+      <div class="ledger-cell">
+        <div>
+          <div class="ledger-num">L3b1a11b1</div>
+          <div class="ledger-caption">mtDNA Matrilinear (Mitotree)</div>
+        </div>
+        <div class="ledger-sub">Linhagem da África Ocidental (Golfo da Guiné / Costa da Mina); 12 gerações documentadas em Pernambuco.</div>
+      </div>
+      <div class="ledger-cell">
+        <div>
+          <div class="ledger-num">87%</div>
+          <div class="ledger-caption">Assinatura Ibero-Atlântica</div>
+        </div>
+        <div class="ledger-sub">Nos 22 pares de autossomos; North Atlantic (33,37%) é o componente dominante no Eurogenes K13.</div>
+      </div>
+      <div class="ledger-cell">
+        <div>
+          <div class="ledger-num">12 Gerações</div>
+          <div class="ledger-caption">Linha Matrilinear Direta</div>
+        </div>
+        <div class="ledger-sub">Ininterrupta de Hélio (#1) até Isabel de Oliveira (c. 1630, Pernambuco) via Sosa 1&rarr;3&rarr;7&rarr;15&hellip;</div>
+      </div>
+    </section>
+
+    <!-- Barra Fixa de Navegação -->
+    <nav class="sec-nav-sticky" aria-label="Navegação por Seção">
+      <div class="container">
+        <div class="sec-nav-links">
+          <button type="button" class="nav-pill active" onclick="jumpTo('sec-bigy', this)">
+            <span class="nav-pill-code">4.2.2</span> Big Y-700 (R-FTH21673)
+          </button>
+          <button type="button" class="nav-pill" onclick="jumpTo('sec-mtdna', this)">
+            <span class="nav-pill-code">4.3</span> mtDNA (L3b1a11b1)
+          </button>
+          <button type="button" class="nav-pill" onclick="jumpTo('sec-cariotipo', this)">
+            <span class="nav-pill-code">K13</span> Cariótipo &amp; Matches
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===================================================================== -->
+    <!-- SEÇÃO 4.2.2 — BIG Y-700: R-FTH21673                                   -->
+    <!-- ===================================================================== -->
+    <section id="sec-bigy" class="chapter-section">
+      <div class="sec-header">
+        <h2 class="sec-title">Big Y-700 (FamilyTreeDNA): R-FTH21673</h2>
+        <span class="sec-badge ydna">Sequenciamento NGS &middot; Ibero-Atlântico</span>
+      </div>
+
+      <p>O sequenciamento de nova geração (<strong>Big Y-700</strong>) analisa profundamente os SNPs do cromossomo Y até a ponta fina da árvore humana, revelando as <em>variantes privadas</em> (<em>Novel Variants</em>) ocorridas nos últimos séculos. A cadeia filogenética completa confirmada para a linhagem varonil dos <strong>Oliveira</strong> é:</p>
+
+      <div class="phylo-chain" aria-label="Cadeia Filogenética Y-DNA Completa">
+        <span class="phylo-node">Y-Adam</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">A0-T</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">A1</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">A1b</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">BT-M42</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">CT-M168</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">CF-P143</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">F-M89</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">GHIJK-F1329</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">HIJK-PF3494</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">IJK-L15</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">K-M9</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">K2</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">K2b</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">P-PF5850</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">P-P295</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">P-M45</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">P-P284</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">P-P226</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-M207</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R1</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node major">R1b</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-L754</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-L761</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-L389</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-P297</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node major">R-M269</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-L23</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node major">R-L51</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-P310</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-L151</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node major">R-P312</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-Z46516</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-ZZ11</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node major">R-DF27</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-ZZ12_1</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node major">R-FTT1</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-FGC20747</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-FT31992</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-BY22363</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-S4236</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-CTS7204</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-BY22360</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">R-FT109220</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node major">R-CTS11087</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node major">R-FTJ66744</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node terminal">R-FTH21673</span>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p><strong>R-FTH21673</strong> é um subclado do haplogrupo <strong>R-DF27 (Ibero-Atlântico)</strong>. Essa ramificação divergiu de seu ramo ancestral <strong>R-FTJ66744</strong> por volta de <strong>800 d.C.</strong> (IC 95%: 215 d.C. – 1145 d.C.), com ancestral comum mais recente (TMRCA) estimado em torno de <strong>1200 d.C.</strong> — período que sucede imediatamente a transição do Condado Portucalense para o Reino de Portugal (independência em 1139, reconhecida pelo Tratado de Zamora em 1143).</p>
+          <p>Trata-se de uma linhagem de forte assinatura ibérica, com matriz genética galaico-portuguesa e substrato céltico-atlântico, seguindo a provável rota: <strong>Pyrénées-Atlantiques (R-BY22363) &rarr; Galiza (R-FT109220) &rarr; Norte de Portugal (R-FTJ66744) &rarr; R-FTH21673</strong>.</p>
+          <p style="font-size: 0.9rem; color: var(--on-surface-variant);"><strong>Projeto Oliveira (FTDNA):</strong> O <em>Oliveira DNA Surname Project</em> registra múltiplos ramos independentes para famílias de sobrenome Oliveira (E-M35, E-M81, I-M223, I-M253, J-M172 judaica, R1a, R1b — maioria — e T1).</p>
+        </div>
+
+        <div class="panel-box" style="margin-bottom: 0;">
+          <div class="panel-box-title ydna"><i data-lucide="git-branch" style="width: 15px; height: 15px;"></i> Linha Terminal Familiar (Últimos 12 Séculos)</div>
+          <ul class="timeline-list">
+            <li class="timeline-item">
+              <div class="tl-head">
+                <span class="tl-code">R-CTS11087</span>
+                <span class="tl-date">c. 800 d.C.</span>
+              </div>
+              <div class="tl-desc">Perfil <strong>Ibero-Atlântico</strong> — formação medieval no noroeste peninsular.</div>
+            </li>
+            <li class="timeline-item">
+              <div class="tl-head">
+                <span class="tl-code">R-FTJ66744</span>
+                <span class="tl-date">c. 1200 d.C.</span>
+              </div>
+              <div class="tl-desc"><strong>Tronco familiar medieval — Norte de Portugal</strong> (época posterior ao Tratado de Zamora, 1143).</div>
+            </li>
+            <li class="timeline-item">
+              <div class="tl-head">
+                <span class="tl-code">R-FTH21673</span>
+                <span class="tl-date">c. 1600 d.C.</span>
+              </div>
+              <div class="tl-desc"><strong>Português, com certeza</strong> — variante terminal transmitida ininterruptamente pela linha varonil dos Oliveira até Pernambuco.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Rare Notable Connections Y-DNA -->
+      <h3>Conexões Notáveis Raras (Y-DNA &middot; Ancestral Comum R-FTT1, c. 2550 a.C.)</h3>
+      <p style="font-size: 0.94rem; color: var(--on-surface-variant);">Menos de <strong>1%</strong> em mais de 720.000 testados compartilham o ancestral comum <strong>R-FTT1</strong> (região de Larmor-Plage, Bretanha), do qual R-FTH21673 é subclado:</p>
+      <div class="two-col">
+        <div class="notable-card">
+          <div class="notable-head">
+            <span class="notable-name">Robert Duvall (1931–2026)</span>
+            <span class="notable-stat ydna">1 em 108 (&lt;1%)</span>
+          </div>
+          <div style="font-size: 0.88rem; color: var(--on-surface-variant);">Ator e cineasta norte-americano (<em>O Poderoso Chefão</em>, <em>Apocalypse Now</em>). Apenas 6.684 testados em 721.872 possuem parentesco patrilinear tão próximo via <strong>R-FTT1</strong> (c. 2550 a.C.).</div>
+        </div>
+        <div class="notable-card">
+          <div class="notable-head">
+            <span class="notable-name">James Webb (1906–1992)</span>
+            <span class="notable-stat ydna">1 em 108 (&lt;1%)</span>
+          </div>
+          <div style="font-size: 0.88rem; color: var(--on-surface-variant);">Segundo Administrador da NASA (1961–1968), condutor do Programa Apollo e homenageado no Telescópio Espacial James Webb. Apenas 6.689 testados compartilham o mesmo elo via <strong>R-FTT1</strong>.</div>
+        </div>
+      </div>
+
+      <!-- Pranchas de Figuras da Seção 4.2.2 -->
+      <div class="figures-grid">
+        <figure class="fig-card" onclick="openFigureModal('fig-4-12')">
+          <div class="fig-frame badge-ratio">
+            <span class="fig-tag">Fig. 1</span>
+            <div class="fig-inner badge-inner" id="slot-fig-4-12"></div>
+          </div>
+          <figcaption class="fig-caption"><strong>Figura 1:</strong> Selo oficial Big Y-700 do FamilyTreeDNA confirmando o haplogrupo patrilinear <strong>R-FTH21673</strong>.</figcaption>
+        </figure>
+
+        <figure class="fig-card" onclick="openFigureModal('fig-4-11')">
+          <div class="fig-frame">
+            <span class="fig-tag">Fig. 2</span>
+            <div class="fig-inner" id="slot-fig-4-11"></div>
+          </div>
+          <figcaption class="fig-caption"><strong>Figura 2:</strong> Subclados do R-P312 (Idade do Bronze Média), evidenciando o ramo <strong>DF27 / ZZ12 (Ibero-Atlântico)</strong>.</figcaption>
+        </figure>
+
+        <figure class="fig-card" onclick="openFigureModal('fig-4-13')">
+          <div class="fig-frame">
+            <span class="fig-tag">Fig. 3</span>
+            <div class="fig-inner" id="slot-fig-4-13"></div>
+          </div>
+          <figcaption class="fig-caption"><strong>Figura 3:</strong> Evolução filogenética e dispersão geográfica do Haplogrupo Y: de <em>Y-Adam</em> até <strong>R-FTH21673</strong>.</figcaption>
+        </figure>
+
+        <figure class="fig-card" onclick="openFigureModal('fig-4-15')">
+          <div class="fig-frame">
+            <span class="fig-tag">Fig. 4</span>
+            <div class="fig-inner" id="slot-fig-4-15"></div>
+          </div>
+          <figcaption class="fig-caption"><strong>Figura 4:</strong> Trajetória Y-DNA até R-FTH21673 no <em>SNP Tracker</em> (Rob Spencer), do Paleolítico à Idade Média.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SEÇÃO 4.3 — LINHAGEM MATRILINEAR (mtDNA)                              -->
+    <!-- ===================================================================== -->
+    <section id="sec-mtdna" class="chapter-section">
+      <div class="sec-header">
+        <h2 class="sec-title">A Linhagem Matrilinear do De Cujus (mtDNA)</h2>
+        <span class="sec-badge">Mitotree &middot; L3b1a11b1</span>
+      </div>
+
+      <p>O DNA mitocondrial (<strong>mtDNA</strong>) é transmitido exclusivamente pelas mães ao longo das gerações, remontando a uma ancestral comum feminina — a <strong>Eva Mitocondrial (L)</strong>, há cerca de 150.000 anos. O sequenciamento completo (mtFull Sequence / Mitotree FTDNA) traçou o caminho exato da linhagem materna direta de Hélio Magalhães de Oliveira:</p>
+
+      <div class="phylo-chain" aria-label="Cadeia Filogenética mtDNA Completa">
+        <span class="phylo-node">L (mt-Eve)</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">L1'7</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">L2'7</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">L2'3'4'6</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">L3'4'6</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">L3'4</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node mt-major">L3</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">L3b'c'd</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">L3b'd</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node mt-major">L3b</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node">L3b1</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node mt-major">L3b1a</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node mt-major">L3b1a11</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node mt-major">L3b1a11b</span><span class="phylo-arrow">&rarr;</span>
+        <span class="phylo-node mt-terminal">L3b1a11b1</span>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p>O ramo <strong>L3b1a11</strong> formou-se ao divergir de L3b1a por volta de <strong>11.000 a.C.</strong>, com ancestral comum mais recente (TMRCA) estimado em <strong>2.500 a.C.</strong> (68 descendentes testados em Zâmbia, Madagascar, Brasil e 10 outros países). O ramo terminal <strong>L3b1a11b / L3b1a11b1</strong> possui ocorrência anotada de <strong>100% no Brasil</strong>; fora do país, a maior proximidade genética encontra-se na República Dominicana — compartilhada, em particular, com o <strong>General Fernando Valerio Gil (1806–1862)</strong>, herói da Guerra de Independência dominicana.</p>
+          <p>O macro-haplogrupo <strong>L3b / L3b1a</strong> é clássico da <strong>África Ocidental</strong> (Golfo da Guiné e bacia do rio Níger — Nigéria, Benim, Chade e Camarões), associado aos povos <strong>Iorubá, Edo e Fon</strong> e correlacionado à expansão Bantu (3.000–4.000 anos atrás). Nos séculos XVI e XVII, os primeiros ciclos açucareiros de Olinda e Recife receberam cerca de 25% de seus escravizados da <strong>Costa da Mina</strong> (Gana, Togo, Benim e sudoeste da Nigéria), especialmente pelos portos de <strong>Ajudá-Ouidah (Benim)</strong> e <strong>Onim / Lagos (Nigéria)</strong> — antes da predominância de quase 70% de Angola e Congo nos séculos XVIII e XIX.</p>
+          <div class="callout-box">
+            <strong>Nota Metabólica &amp; Arremate Genômico:</strong> Mitocôndrias do macro-haplogrupo L evoluíram para alta eficiência metabólica em climas quentes, associando-se modernamente a maior propensão à retenção de gordura visceral e resistência à insulina. Contudo, nos 22 pares de autossomos (atDNA), a ancestralidade do probando é essencialmente (<strong>87%</strong>) ibero-atlântica.
+          </div>
+        </div>
+
+        <!-- Cadeia Matrilinear de 12 Gerações -->
+        <div class="panel-box" style="margin-bottom: 0;">
+          <div class="panel-box-title"><i data-lucide="git-commit-vertical" style="width: 15px; height: 15px;"></i> Cadeia Matrilinear Direta (12 Gerações em Pernambuco)</div>
+          <p style="font-size: 0.82rem; color: var(--on-surface-variant); margin-bottom: 0.65rem;">Percurso Sosa-Stradonitz: <code>1 &rarr; 3 &rarr; 7 &rarr; 15 &rarr; 31 &rarr; 63 &rarr; 127 &rarr; 255 &rarr; 511 &rarr; 1023 &rarr; &hellip; &rarr; 8191</code></p>
+          <ul class="timeline-list" style="gap: 0.35rem;">
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#1 Hélio Magalhães de Oliveira</span><span class="tl-date">1959</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#3 Djanira Magalhães Florêncio</span><span class="tl-date">1925</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#7 Laura Magalhães de Araújo</span><span class="tl-date">1897</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#15 Maria Alves Magalhães</span><span class="tl-date">1873</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#31 Theresa de Jesus Silva Porto</span><span class="tl-date">1849</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#63 Thereza da Cunha Cavalcanti</span><span class="tl-date">1818</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#127 Catharina Cavalcanti de Andrade</span><span class="tl-date">1789</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#255 Maria Rosa Bezerra Cavalcanti</span><span class="tl-date">1765</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#511 Maria da Soledade Ferreira de Carvalho</span><span class="tl-date">1732</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#1023 Suzana da Silva</span><span class="tl-date">1710</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#2047 Felipa da Silva</span><span class="tl-date">1685</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#4095 Maria de Siqueira</span><span class="tl-date">1660</span></div></li>
+            <li class="timeline-item mt"><div class="tl-head"><span class="tl-code">#8191 Isabel de Oliveira (Matriarca)</span><span class="tl-date">c. 1630</span></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Conexões Notáveis Raras mtDNA -->
+      <h3>Conexões Notáveis Raras (mtDNA)</h3>
+      <div class="two-col">
+        <div class="notable-card">
+          <div class="notable-head">
+            <span class="notable-name">Henrietta Lacks (1920–1951)</span>
+            <span class="notable-stat">1 em 331 (&lt;0,3%)</span>
+          </div>
+          <div style="font-size: 0.88rem; color: var(--on-surface-variant);">Fonte da primeira linhagem celular humana imortal (células <em>HeLa</em>, utilizadas em mais de 75.000 estudos médicos). Ancestral materna comum em <strong>L3b1a (c. 11.000 a.C.)</strong>; apenas 974 testados em 322.394 compartilham este grau de proximidade.</div>
+        </div>
+        <div class="notable-card">
+          <div class="notable-head">
+            <span class="notable-name">Whitney Houston (1963–2012)</span>
+            <span class="notable-stat">1 em 252 (&lt;0,4%)</span>
+          </div>
+          <div style="font-size: 0.88rem; color: var(--on-surface-variant);">Uma das maiores cantoras da história moderna. Ancestral materna comum em <strong>L3b (c. 22.000 a.C.)</strong>; apenas 1.279 clientes em 322.308 sequenciamentos mtDNA compartilham essa conexão.</div>
+        </div>
+      </div>
+
+      <!-- Pranchas de Figuras da Seção 4.3 -->
+      <div class="figures-grid">
+        <figure class="fig-card" onclick="openFigureModal('fig-4-16')">
+          <div class="fig-frame badge-ratio">
+            <span class="fig-tag">Fig. 5</span>
+            <div class="fig-inner badge-inner" id="slot-fig-4-16"></div>
+          </div>
+          <figcaption class="fig-caption"><strong>Figura 5:</strong> Selo oficial Mitotree do FamilyTreeDNA confirmando o haplogrupo matrilinear <strong>L3b1a11b1</strong>.</figcaption>
+        </figure>
+
+        <figure class="fig-card" onclick="openFigureModal('fig-4-18')">
+          <div class="fig-frame">
+            <span class="fig-tag">Fig. 6</span>
+            <div class="fig-inner" id="slot-fig-4-18"></div>
+          </div>
+          <figcaption class="fig-caption"><strong>Figura 6:</strong> Mapa de calor da frequência de ocorrência, por país, do haplogrupo mitocondrial <strong>L3b1a11</strong>.</figcaption>
+        </figure>
+
+        <figure class="fig-card" onclick="openFigureModal('fig-4-21')">
+          <div class="fig-frame map-pair-ratio">
+            <span class="fig-tag">Fig. 7</span>
+            <div class="fig-inner map-pair-inner" id="slot-fig-4-21"></div>
+          </div>
+          <figcaption class="fig-caption"><strong>Figura 7:</strong> Proveniência na Costa da Mina (1550–1650): Portos de <strong>(1) Ajudá-Ouidah (Benim)</strong> e <strong>(2) Onim (Nigéria)</strong> nos primeiros ciclos do açúcar em Pernambuco.</figcaption>
+        </figure>
+
+        <figure class="fig-card" onclick="openFigureModal('fig-4-22')">
+          <div class="fig-frame map-pair-ratio">
+            <span class="fig-tag">Fig. 8</span>
+            <div class="fig-inner map-pair-inner" id="slot-fig-4-22"></div>
+          </div>
+          <figcaption class="fig-caption"><strong>Figura 8:</strong> <em>Matches Map</em> (mtDNA HVR1 no FTDNA): correspondências nas Américas que reforçam as rotas transatlânticas históricas.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SEÇÃO K13 — CARIÓTIPO GENÔMICO & CORRESPONDÊNCIAS                     -->
+    <!-- ===================================================================== -->
+    <section id="sec-cariotipo" class="chapter-section">
+      <div class="sec-header">
+        <h2 class="sec-title">Cariótipo Genômico (Eurogenes K13) &amp; Correspondências</h2>
+        <span class="sec-badge">Kit DF8024661 &middot; GEDmatch</span>
+      </div>
+
+      <div class="two-col">
+        <div class="panel-box" style="margin-bottom: 0;">
+          <div class="panel-box-title"><i data-lucide="layers" style="width: 15px; height: 15px;"></i> Composição Global nos 22 Autossomos (Eurogenes K13)</div>
+          <div class="admix-row">
+            <div class="admix-head"><span>North Atlantic (Dominante &mdash; 1/3 do DNA)</span><span>33,37%</span></div>
+            <div class="admix-track"><div class="admix-fill" style="width: 33.37%; background-color: var(--tertiary);"></div></div>
+          </div>
+          <div class="admix-row">
+            <div class="admix-head"><span>West Med (Mediterrâneo Ocidental)</span><span>20,29%</span></div>
+            <div class="admix-track"><div class="admix-fill" style="width: 20.29%; background-color: var(--heraldic-gold);"></div></div>
+          </div>
+          <div class="admix-row">
+            <div class="admix-head"><span>East Med (Mediterrâneo Oriental / Itálico)</span><span>14,05%</span></div>
+            <div class="admix-track"><div class="admix-fill" style="width: 14.05%; background-color: var(--positive);"></div></div>
+          </div>
+          <div class="admix-row">
+            <div class="admix-head"><span>Baltic (Europa Nordeste / Báltico)</span><span>10,37%</span></div>
+            <div class="admix-track"><div class="admix-fill" style="width: 10.37%; background-color: #682d63;"></div></div>
+          </div>
+          <div class="admix-row">
+            <div class="admix-head"><span>Amerindian (Matriz Indígena)</span><span>6,68%</span></div>
+            <div class="admix-track"><div class="admix-fill" style="width: 6.68%; background-color: var(--primary);"></div></div>
+          </div>
+          <div class="admix-row">
+            <div class="admix-head"><span>Outros (West Asian, Red Sea, Sub-Saharan, etc.)</span><span>15,24%</span></div>
+            <div class="admix-track"><div class="admix-fill" style="width: 15.24%; background-color: var(--on-surface-variant);"></div></div>
+          </div>
+        </div>
+
+        <div class="panel-box" style="margin-bottom: 0;">
+          <div class="panel-box-title"><i data-lucide="users" style="width: 15px; height: 15px;"></i> Correspondências Genéticas Diretas (Matches)</div>
+          <p style="font-size: 0.88rem; margin-bottom: 0.5rem;"><strong>Y-DNA 2 Step Match</strong> (ancestral anterior à migração para a Irlanda):</p>
+          <ol style="margin-left: 1.25rem; font-size: 0.88rem; margin-bottom: var(--space-md); line-height: 1.55;">
+            <li>Gerry Glenn O'Quinn</li>
+            <li>John Claude O'Quin III</li>
+            <li>Ward O'Quinn</li>
+            <li>Michael O'Quinn</li>
+          </ol>
+          <p style="font-size: 0.88rem; margin-bottom: 0.5rem;"><strong>mt-DNA 3 Step Match</strong> (América Central e Caribe):</p>
+          <ol style="margin-left: 1.25rem; font-size: 0.88rem; line-height: 1.55;">
+            <li>Candido Antonio de Leon Matos (Porto Rico)</li>
+            <li>Emil A. Cherrington (Belize City, Belize)</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="figures-grid single">
+        <figure class="fig-card" onclick="openFigureModal('fig-4-25')">
+          <div class="fig-frame wide-ratio">
+            <span class="fig-tag">Fig. 9</span>
+            <div class="fig-inner" id="slot-fig-4-25"></div>
+          </div>
+          <figcaption class="fig-caption"><strong>Figura 9:</strong> Cariótipo Clássico de Laboratório — Ancestralidade Genômica (Kit DF8024661, Hélio Magalhães de Oliveira, GEDmatch Eurogenes K13). A contribuição dominante é <em>North Atlantic</em> (33,37%).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox Modal para Figuras -->
+  <div class="modal-backdrop" id="fig-modal" onclick="if(event.target===this) closeFigureModal()">
+    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-fig-title">
+      <button type="button" class="modal-close" onclick="closeFigureModal()" aria-label="Fechar">&times;</button>
+      <h3 id="modal-fig-title" style="margin-top: 0; padding-right: 2.5rem;">Figura</h3>
+      <div class="modal-img-wrap" id="modal-fig-img-wrap"></div>
+      <p id="modal-fig-caption" style="font-size: 0.92rem; color: var(--on-surface-variant); margin-bottom: 0;"></p>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="colophon">
+    <div class="container colophon-inner">
+      <div>
+        <strong style="font-family: var(--font-headline); color: var(--on-surface); font-size: 1rem;">HAPLOGRUPOS &middot; Árvore de Costados</strong>
+        <div>Capítulo 4 (Genealogia Genética) de <em>Hélio Magalhães de Oliveira</em> &middot; ISBN 978-65-01-32873-7.</div>
+      </div>
+      <a href="https://hmdeoliveira.github.io/home/" class="return-link">
+        <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
+        Retornar ao index.html
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // Mapeamento das figuras (reaproveita nomes já usados no index.html quando aplicável)
+    const FIGURES = {
+      'fig-4-11': {
+        title: 'Figura 2 — Subclados do R-P312 (Perfil Ibero-Atlântico)',
+        file: 'subclades_P312.png',
+        alts: ['subclades_P312.jpg', 'Figura4.11.png'],
+        caption: 'Subclados do R-P312 na Idade do Bronze Média, destacando a descendência DF27/S250 → ZZ12 (Ibero-Atlântico).'
+      },
+      'fig-4-12': {
+        title: 'Figura 1 — Selo oficial Big Y-700 confirmado: R-FTH21673',
+        file: 'Y-DNA-R-FTH21673.png',
+        alts: ['fig4_12_badge_RFTH21673.png', 'Y-DNA-R-FTH21673.jpg'],
+        caption: 'Selo oficial Big Y-700 do FamilyTreeDNA confirmando o haplogrupo patrilinear R-FTH21673.'
+      },
+      'fig-4-13': {
+        title: 'Figura 3 — Evolução do Haplogrupo Y até R-FTH21673',
+        file: 'evolucao_RFTH21673.png',
+        alts: ['evolucao_RFTH21673.jpg', 'Figura4.13.png'],
+        caption: 'Árvore filogenética completa e mapa de dispersão do cromossomo Y desde Y-Adam até R-FTH21673.'
+      },
+      'fig-4-15': {
+        title: 'Figura 4 — SNP Tracker: Caminho Y-DNA para R-FTH21673',
+        file: 'snp_tracker.png',
+        alts: ['fsnp_tracker.jpg', 'Figura4.15.png'],
+        caption: 'Rastreamento geográfico e temporal (Paleolítico à Idade Média) do caminho Y-DNA até R-FTH21673 via SNP Tracker.'
+      },
+      'fig-4-16': {
+        title: 'Figura 5 — Selo oficial Mitotree confirmado: L3b1a11b1',
+        file: 'mtDNA-Mitotree.png',
+        alts: ['fig4_16_arvore_mtDNA.png', 'fig4_23_mitotree_L3b1a11b1.png'],
+        caption: 'Selo oficial Mitotree do FamilyTreeDNA confirmando o haplogrupo matrilinear L3b1a11b1.'
+      },
+      'fig-4-18': {
+        title: 'Figura 6 — Mapa de Calor de Ocorrência de L3b1a11',
+        file: 'mapa_L3b1a11.png',
+        alts: ['mapa_L3b1a11.jpg', 'Figura4.18.png'],
+        caption: 'Distribuição geográfica e frequência relativa por país do haplogrupo mitocondrial L3b1a11.'
+      },
+      'fig-4-21': {
+        title: 'Figura 7 — Rotas Transatlânticas e Costa da Mina (1550–1650)',
+        file: 'fig4_21_costa_da_mina.png',
+        alts: ['fig4_21_costa_da_mina.jpg', 'Figura4.21.png'],
+        caption: 'Proveniência nos primeiros ciclos açucareiros de Pernambuco: Portos de Ajudá-Ouidah (Benim) e Onim (Nigéria).'
+      },
+      'fig-4-22': {
+        title: 'Figura 8 — Matches Map mtDNA HVR1 (FTDNA)',
+        file: 'MatchesMaps-mtDNA-HVR1.png',
+        alts: ['fig4_22_matches_mtDNA.png', 'MatchesMaps-mtDNA-HVR1.jpg'],
+        caption: 'Correspondências mundiais de mtDNA HVR1 no FamilyTreeDNA reforçando as rotas históricas para as Américas.'
+      },
+      'fig-4-25': {
+        title: 'Figura 9 — Cariótipo Clássico de Laboratório (Eurogenes K13)',
+        file: 'cariotipo_K13.png',
+        alts: ['cariotipo_K13.jpg', 'Figura4.25.png'],
+        caption: 'Cariótipo de ancestralidade genômica por cromossomo (Kit DF8024661, GEDmatch Eurogenes K13). North Atlantic domina com 33,37%.'
+      }
+    };
+
+    function placeholderMarkup(fig) {
+      return `
+        <div class="fig-placeholder">
+          <i data-lucide="image" style="width: 32px; height: 32px; opacity: 0.5;"></i>
+          <div class="fig-placeholder-title">Espaço reservado para imagem</div>
+          <div class="fig-placeholder-file">${fig.file}</div>
+        </div>
+      `;
+    }
+
+    function handleFigError(img, key) {
+      const fig = FIGURES[key];
+      const idx = parseInt(img.dataset.altIdx || '0', 10);
+      if (fig && fig.alts && idx < fig.alts.length) {
+        img.dataset.altIdx = String(idx + 1);
+        img.src = fig.alts[idx];
+      } else {
+        img.parentElement.innerHTML = placeholderMarkup(fig);
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function renderFigureSlots() {
+      Object.entries(FIGURES).forEach(([key, fig]) => {
+        const slot = document.getElementById('slot-' + key);
+        if (!slot) return;
+        slot.innerHTML = `<img class="fig-img" src="${fig.file}" alt="${fig.title}" loading="lazy" data-alt-idx="0" onerror="handleFigError(this, '${key}')">`;
+      });
+    }
+
+    function openFigureModal(key) {
+      const fig = FIGURES[key];
+      if (!fig) return;
+      document.getElementById('modal-fig-title').textContent = fig.title;
+      document.getElementById('modal-fig-caption').textContent = fig.caption;
+      document.getElementById('modal-fig-img-wrap').innerHTML =
+        `<img src="${fig.file}" alt="${fig.title}" data-alt-idx="0" onerror="handleFigError(this, '${key}')">`;
+      document.getElementById('fig-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeFigureModal() {
+      document.getElementById('fig-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function jumpTo(id, btn) {
+      document.querySelectorAll('.nav-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeFigureModal();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderFigureSlots();
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
