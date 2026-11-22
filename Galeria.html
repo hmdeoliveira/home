@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="gallery">
+  <meta name="design-style" content="broadsheet">
+  <title>GALERIA — Árvore de Costados · Hélio Magalhães de Oliveira</title>
+
+  <!-- Mesmas fontes do index.html: Bitter, Source Serif 4 e Source Sans 3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,500..800;1,400..700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons (mesma versão do index.html) -->
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Paleta Broadsheet idêntica ao index.html */
+      --background: #f7f3eb;
+      --surface-container-low: #efe8da;
+      --surface-container: #e6ddcc;
+      --surface-container-high: #ddd2be;
+
+      --on-surface: #1a1817;
+      --on-surface-variant: #4d4845;
+
+      --outline: #33302e;
+      --outline-variant: #cdc3b2;
+
+      --primary: #990f3d;
+      --on-primary: #ffffff;
+      --primary-container: #f4dce2;
+      --on-primary-container: #6b0a2a;
+      --secondary: #0d7680;
+      --tertiary: #0f5499;
+      --warning: #9a6312;
+      --positive: #2d6a4f;
+
+      --heraldic-gold: #c59b27;
+      --heraldic-gold-pale: #faecc7;
+
+      --space-xs: clamp(0.25rem, 0.5vw, 0.375rem);
+      --space-sm: clamp(0.5rem, 1vw, 0.75rem);
+      --space-md: clamp(1rem, 1.5vw, 1.25rem);
+      --space-lg: clamp(1.5rem, 2.5vw, 2rem);
+      --space-xl: clamp(2rem, 4vw, 3rem);
+      --space-2xl: clamp(3rem, 6vw, 4.5rem);
+
+      --font-headline: 'Bitter', Georgia, serif;
+      --font-body: 'Source Serif 4', Georgia, serif;
+      --font-label: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      --rule-masthead: 3px double var(--on-surface);
+      --rule-ink: 1px solid var(--on-surface);
+      --rule-section: 2px solid var(--outline);
+      --rule-column: 1px solid var(--outline-variant);
+
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      overflow-x: clip;
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    /* Faixa Superior com Link de Retorno */
+    .top-strip {
+      border-bottom: var(--rule-column);
+      padding: var(--space-xs) 0;
+      background-color: var(--surface-container-low);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    .top-strip-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .return-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--primary);
+      background-color: var(--background);
+      transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .return-link:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      text-decoration: none;
+    }
+
+    /* Masthead */
+    .masthead {
+      padding: var(--space-lg) 0 var(--space-md);
+      border-bottom: var(--rule-masthead);
+      margin-bottom: var(--space-lg);
+      text-align: center;
+    }
+
+    .masthead-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xs);
+    }
+
+    .masthead-line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--outline-variant);
+    }
+
+    .masthead-category {
+      color: var(--primary);
+      font-family: var(--font-label);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .masthead-title {
+      font-family: var(--font-headline);
+      font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: var(--space-xs) 0;
+      line-height: 1.08;
+    }
+
+    .masthead-sub {
+      font-style: italic;
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      color: var(--on-surface-variant);
+      max-width: 74ch;
+      margin: 0 auto var(--space-md);
+    }
+
+    .masthead-meta-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      padding-top: var(--space-sm);
+      border-top: var(--rule-column);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    .masthead-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Barra de Navegação das Gerações */
+    .gen-nav-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background-color: var(--background);
+      border-top: var(--rule-ink);
+      border-bottom: var(--rule-masthead);
+      padding: 0.45rem 0;
+      margin-bottom: var(--space-lg);
+      box-shadow: 0 4px 12px rgba(26, 24, 23, 0.07);
+    }
+
+    .gen-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .gen-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .nav-pill {
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      padding: 0.42rem 0.75rem;
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--on-surface);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .nav-pill:hover {
+      background-color: var(--surface-container-high);
+      border-color: var(--outline);
+      color: var(--primary);
+    }
+
+    .nav-pill.active {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .nav-pill-code {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.1rem 0.32rem;
+      background-color: var(--surface-container);
+      color: var(--primary);
+    }
+
+    .nav-pill.active .nav-pill-code {
+      background-color: rgba(255, 255, 255, 0.22);
+      color: var(--on-primary);
+    }
+
+    .view-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .search-mini {
+      padding: 0.4rem 0.65rem;
+      border: 1px solid var(--outline);
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      width: 210px;
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      border: 1px solid var(--outline);
+      background-color: var(--background);
+    }
+
+    .mode-btn {
+      background: none;
+      border: none;
+      padding: 0.42rem 0.7rem;
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      color: var(--on-surface);
+    }
+
+    .mode-btn.active {
+      background-color: var(--on-surface);
+      color: var(--background);
+    }
+
+    /* Seções por Geração */
+    .generation-section {
+      margin-bottom: var(--space-2xl);
+      scroll-margin-top: 80px;
+    }
+
+    .gen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      border-bottom: var(--rule-ink);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-lg);
+      position: relative;
+    }
+
+    .gen-header::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 52px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .gen-title {
+      font-family: var(--font-headline);
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 700;
+    }
+
+    .gen-badge {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      text-transform: uppercase;
+    }
+
+    /* Grade de Casais (reduzida ~25% para retratos mais compactos) */
+    .couples-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 445px));
+      justify-content: center;
+      gap: var(--space-lg);
+    }
+
+    .couples-grid.single {
+      grid-template-columns: minmax(0, 460px);
+      justify-content: center;
+    }
+
+    @media (max-width: 960px) {
+      .couples-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .couple-plate {
+      border: var(--rule-column);
+      border-top: var(--rule-section);
+      background-color: var(--surface-container-low);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .couple-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding-bottom: var(--space-xs);
+      border-bottom: var(--rule-column);
+    }
+
+    .couple-label {
+      font-family: var(--font-label);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface);
+    }
+
+    .couple-sosa {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .couple-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 540px) {
+      .couple-pair {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Grade Sequencial Sosa (reduzida ~25%) */
+    .sosa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 210px));
+      justify-content: center;
+      gap: var(--space-md);
+    }
+
+    /* Cartão de Retrato */
+    .portrait-card {
+      background-color: var(--background);
+      border: var(--rule-column);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .portrait-card:hover {
+      border-color: var(--outline);
+      box-shadow: 0 6px 18px rgba(26, 24, 23, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .portrait-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background-color: var(--surface-container);
+      border-bottom: var(--rule-ink);
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portrait-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--outline-variant);
+      overflow: hidden;
+      background-color: #e9e1d2;
+    }
+
+    .portrait-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      transition: transform 320ms ease;
+    }
+
+    .portrait-card:hover .portrait-img {
+      transform: scale(1.03);
+    }
+
+    .sosa-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      background-color: var(--on-surface);
+      color: var(--background);
+      padding: 0.14rem 0.45rem;
+    }
+
+    .photo-ribbon {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      z-index: 2;
+      background-color: rgba(153, 15, 61, 0.92);
+      color: #ffffff;
+      font-family: var(--font-label);
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.22rem 0.4rem;
+      text-align: center;
+    }
+
+    .portrait-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-md);
+      background: radial-gradient(circle at 50% 42%, #f4ede0 0%, #e4dac7 100%);
+      color: var(--on-surface-variant);
+    }
+
+    .portrait-placeholder svg {
+      width: 72px;
+      height: 72px;
+      opacity: 0.45;
+      margin-bottom: var(--space-sm);
+    }
+
+    .placeholder-title {
+      font-family: var(--font-label);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .placeholder-sub {
+      font-size: 0.8rem;
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .portrait-caption {
+      padding: 0.65rem 0.72rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .portrait-kinship {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      margin-bottom: 0.16rem;
+    }
+
+    .portrait-name {
+      font-family: var(--font-headline);
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.22;
+      color: var(--on-surface);
+      margin-bottom: 0.18rem;
+    }
+
+    .portrait-years {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--on-surface-variant);
+      margin-bottom: 0.25rem;
+    }
+
+    .portrait-place {
+      font-size: 0.82rem;
+      color: var(--on-surface-variant);
+      line-height: 1.35;
+    }
+
+    /* Lightbox Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(26, 24, 23, 0.82);
+      z-index: 1000;
+      padding: var(--space-md);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-window {
+      background-color: var(--background);
+      border: 2px solid var(--on-surface);
+      width: 100%;
+      max-width: 860px;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: var(--space-lg);
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.35);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      width: 34px;
+      height: 34px;
+      background: var(--background);
+      border: 1px solid var(--outline);
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--on-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: minmax(210px, 270px) 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    @media (max-width: 740px) {
+      .modal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .modal-photo-frame {
+      border: var(--rule-ink);
+      background-color: var(--surface-container);
+      padding: 10px;
+    }
+
+    .modal-photo-frame img {
+      width: 100%;
+      height: auto;
+      max-height: 360px;
+      object-fit: contain;
+      display: block;
+      background-color: #e9e1d2;
+    }
+
+    .modal-file-info {
+      margin-top: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--on-surface-variant);
+    }
+
+    .modal-sosa-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      background-color: var(--outline);
+      color: var(--background);
+      padding: 0.16rem 0.5rem;
+      margin-right: 0.45rem;
+    }
+
+    .modal-meta-box {
+      background-color: var(--surface-container-low);
+      border: var(--rule-column);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-md) 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .rel-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.45rem;
+      margin-top: var(--space-sm);
+    }
+
+    .rel-btn {
+      padding: 0.42rem 0.6rem;
+      border: 1px solid var(--outline);
+      background-color: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .rel-btn:hover:not(:disabled) {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .rel-btn:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+    }
+
+    .modal-footer-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--space-md);
+      padding-top: var(--space-sm);
+      border-top: var(--rule-ink);
+    }
+
+    .step-btn {
+      background: none;
+      border: 1px solid var(--outline);
+      padding: 0.4rem 0.85rem;
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--on-surface);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .step-btn:hover {
+      background-color: var(--on-surface);
+      color: var(--background);
+    }
+
+    /* Rodapé */
+    .colophon {
+      border-top: var(--rule-masthead);
+      margin-top: var(--space-2xl);
+      padding: var(--space-lg) 0 var(--space-xl);
+      background-color: var(--surface-container-low);
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+    }
+
+    .colophon-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .empty-state {
+      border: var(--rule-column);
+      background-color: var(--surface-container-low);
+      padding: var(--space-xl);
+      text-align: center;
+      font-style: italic;
+      color: var(--on-surface-variant);
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .gen-nav-sticky, .modal-backdrop, .return-link { display: none !important; }
+      .couple-plate, .portrait-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Faixa Superior com Retorno ao index.html -->
+  <aside class="top-strip">
+    <div class="container top-strip-inner">
+      <a href="https://hmdeoliveira.github.io/home/" class="return-link">
+        <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
+        Voltar à Árvore de Costados (index.html)
+      </a>
+      <span>ACERVO FOTOGRÁFICO &middot; SISTEMA SOSA-STRADONITZ &middot; ISBN 978-65-01-32873-7</span>
+    </div>
+  </aside>
+
+  <!-- Cabeçalho Editorial -->
+  <header class="container masthead">
+    <div class="masthead-ornament">
+      <div class="masthead-line"></div>
+      <span class="masthead-category">ÁRVORE DE COSTADOS &middot; ÁLBUM ICONOGRÁFICO</span>
+      <div class="masthead-line"></div>
+    </div>
+    <h1 class="masthead-title">GALERIA</h1>
+    <p class="masthead-sub">Retratos dos antepassados diretos de <strong>Hélio Magalhães de Oliveira</strong>, ordenados segundo a numeração genealógica <em>Sosa-Stradonitz</em></p>
+    <div class="masthead-meta-bar">
+      <span class="masthead-meta-item"><i data-lucide="user" style="width: 14px; height: 14px;"></i> Probandus (#1): Hélio Magalhães de Oliveira</span>
+      <span class="masthead-meta-item"><i data-lucide="camera" style="width: 14px; height: 14px;"></i> Gerações 1 a 4 (Sosa #2 a #23)</span>
+      <span class="masthead-meta-item"><i data-lucide="calendar" style="width: 14px; height: 14px;"></i> 1842 &ndash; 2024</span>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Barra Fixa de Gerações e Busca -->
+    <nav class="gen-nav-sticky" aria-label="Navegação por Geração">
+      <div class="container gen-nav-bar">
+        <div class="gen-nav-links">
+          <button type="button" class="nav-pill active" onclick="jumpToGen('gen-1', this)">
+            <span class="nav-pill-code">G1</span> Pais (#2&ndash;#3)
+          </button>
+          <button type="button" class="nav-pill" onclick="jumpToGen('gen-2', this)">
+            <span class="nav-pill-code">G2</span> Avós (#4&ndash;#7)
+          </button>
+          <button type="button" class="nav-pill" onclick="jumpToGen('gen-3', this)">
+            <span class="nav-pill-code">G3</span> Bisavós (#8&ndash;#15)
+          </button>
+          <button type="button" class="nav-pill" onclick="jumpToGen('gen-4', this)">
+            <span class="nav-pill-code">G4</span> Trisavós (#16&ndash;#23)
+          </button>
+        </div>
+
+        <div class="view-controls">
+          <input type="text" id="search-input" class="search-mini" placeholder="Filtrar nome ou #Sosa..." oninput="renderGallery()" aria-label="Filtrar antepassados">
+          <div class="mode-switch" role="group" aria-label="Modo de exibição">
+            <button type="button" class="mode-btn active" id="btn-couples" onclick="setMode('couples')">Casais</button>
+            <button type="button" class="mode-btn" id="btn-grid" onclick="setMode('grid')">Grade Sosa</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Conteúdo da Galeria -->
+    <div id="gallery-root"></div>
+
+  </main>
+
+  <!-- Lightbox de Ampliação -->
+  <div class="modal-backdrop" id="portrait-modal" onclick="if(event.target===this) closeModal()">
+    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+      <button type="button" class="modal-close" onclick="closeModal()" aria-label="Fechar">&times;</button>
+
+      <div class="modal-grid">
+        <div class="modal-photo-frame">
+          <div id="modal-media"></div>
+          <div class="modal-file-info">
+            <span id="modal-file"></span>
+            <span id="modal-bin"></span>
+          </div>
+        </div>
+
+        <div>
+          <div style="margin-bottom: 0.4rem; padding-right: 2.2rem;">
+            <span class="modal-sosa-tag" id="modal-sosa"></span>
+            <span id="modal-gen" style="font-family: var(--font-label); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--on-surface-variant);"></span>
+          </div>
+          <h2 id="modal-name" style="font-family: var(--font-headline); font-size: 1.5rem; margin-bottom: 0.2rem;"></h2>
+          <div id="modal-kinship" style="font-family: var(--font-label); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary);"></div>
+
+          <div class="modal-meta-box">
+            <div><strong>Período:</strong> <span id="modal-years"></span></div>
+            <div><strong>Naturalidade:</strong> <span id="modal-place"></span></div>
+            <div><strong>Cônjuge:</strong> <span id="modal-spouse"></span></div>
+          </div>
+
+          <p id="modal-bio" style="font-size: 0.95rem; line-height: 1.55;"></p>
+          <div id="modal-note" style="display: none; margin-top: 0.75rem; padding: 0.5rem 0.7rem; background-color: var(--primary-container); color: var(--on-primary-container); font-size: 0.84rem; border-left: 3px solid var(--primary);"></div>
+
+          <div style="margin-top: var(--space-md); padding-top: var(--space-sm); border-top: var(--rule-column);">
+            <div style="font-family: var(--font-label); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--on-surface-variant);">Navegação Sosa-Stradonitz:</div>
+            <div class="rel-nav-grid">
+              <button type="button" class="rel-btn" id="rel-father"></button>
+              <button type="button" class="rel-btn" id="rel-mother"></button>
+              <button type="button" class="rel-btn" id="rel-spouse"></button>
+              <button type="button" class="rel-btn" id="rel-child"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer-nav">
+        <button type="button" class="step-btn" onclick="stepModal(-1)">
+          <i data-lucide="chevron-left" style="width: 15px; height: 15px;"></i> Anterior
+        </button>
+        <button type="button" class="step-btn" onclick="stepModal(1)">
+          Próximo <i data-lucide="chevron-right" style="width: 15px; height: 15px;"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé com Link de Retorno -->
+  <footer class="colophon">
+    <div class="container colophon-inner">
+      <div>
+        <strong style="font-family: var(--font-headline); color: var(--on-surface); font-size: 1rem;">GALERIA &middot; Árvore de Costados</strong>
+        <div>Acervo fotográfico de <em>Hélio Magalhães de Oliveira</em> &middot; Compatível com a monografia principal (index.html).</div>
+      </div>
+      <a href="https://hmdeoliveira.github.io/home/" class="return-link">
+        <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
+        Retornar ao index.html
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const GALLERY_DATA = [
+      // GERAÇÃO 1 — PAIS (#2 - #3)
+      {
+        sosa: 2, gen: 1, name: 'Nilson Magalhães de Oliveira', kinship: 'Pai',
+        years: '1931–2024', place: 'Arcoverde, Pernambuco',
+        spouseSosa: 3, spouseName: 'Djanira Magalhães Florêncio (#3)',
+        photo: 'Nilson.jpg', alts: ['nilson.jpg'],
+        bio: 'Químico Industrial (UFPE, 1952), ex-diretor da Escola Antônio Japiassú e Professor Titular de Física e Matemática Superior da AESA em Arcoverde. Y-DNA R-FTH21673.'
+      },
+      {
+        sosa: 3, gen: 1, name: 'Djanira Magalhães Florêncio', kinship: 'Mãe',
+        years: '1925–1993', place: 'Custódia, Pernambuco',
+        spouseSosa: 2, spouseName: 'Nilson Magalhães de Oliveira (#2)',
+        photo: 'djanira.jpg', alts: ['Djanira.jpg'],
+        bio: 'Laureada em Letras pela AESA, educadora no Colégio Carlos Rios e coordenadora do Colégio Antônio Japiassú em Arcoverde. mtDNA L3b1a11b1.'
+      },
+
+      // GERAÇÃO 2 — AVÓS (#4 - #7)
+      {
+        sosa: 4, gen: 2, name: 'Florismundo José de Oliveira', kinship: 'Avô Paterno',
+        years: '1901–1992', place: 'Alagoa de Baixo (Sertânia), Pernambuco',
+        spouseSosa: 5, spouseName: 'Izaura Magalhães de Siqueira (#5)',
+        photo: 'Florismundo.jpg', alts: ['florismundo.jpg'],
+        bio: 'Farmacêutico prático (Reg. CRF Nº 00093), Pharmácia Oswaldo Cruz em Arcoverde. Y-DNA R-FTH21673.'
+      },
+      {
+        sosa: 5, gen: 2, name: 'Izaura Magalhães de Siqueira', kinship: 'Avó Paterna',
+        years: '1902–1987', place: 'Pedra, Pernambuco',
+        spouseSosa: 4, spouseName: 'Florismundo José de Oliveira (#4)',
+        photo: 'Izaura.jpg', alts: ['izaura.jpg'],
+        bio: 'Troncos Siqueira e Magalhães Porto. Fundadora e diretora do Centro Espírita Racionalista Cristão de Arcoverde.'
+      },
+      {
+        sosa: 6, gen: 2, name: 'Tiburtino Florêncio da Silva', kinship: 'Avô Materno',
+        years: '1896–1978', place: 'Custódia, Pernambuco',
+        spouseSosa: 7, spouseName: 'Laura Magalhães de Araújo (#7)',
+        photo: 'Tiburtino.jpg', alts: ['tiburtino.jpg'],
+        bio: 'Patriarca em Custódia, pecuarista, líder comunitário e proprietário da Padaria Vencedora em Arcoverde.'
+      },
+      {
+        sosa: 7, gen: 2, name: 'Laura Magalhães de Araújo', kinship: 'Avó Materna',
+        years: '1897–1970', place: 'Cimbres, Pernambuco',
+        spouseSosa: 6, spouseName: 'Tiburtino Florêncio da Silva (#6)',
+        photo: 'Laura.jpg', alts: ['laura.jpg'],
+        bio: 'Tronco Magalhães Porto e Maciel. Costureira de primorosa qualidade. mtDNA L3b1a11b1.'
+      },
+
+      // GERAÇÃO 3 — BISAVÓS (#8 - #15)
+      {
+        sosa: 8, gen: 3, name: 'Júlio José de Oliveira', kinship: 'Bisavô Paterno',
+        years: '1862–1926', place: 'Caruaru, Pernambuco',
+        spouseSosa: 9, spouseName: 'Josefa Gomes Patriota (#9)',
+        photo: 'Julio.jpg', alts: ['julio.jpg'],
+        bio: 'Comerciante e pioneiro em Camalaú e Alagoa de Baixo; proprietário do Sítio Salgado, Rio da Barra, Sertânia. Y-DNA R-FTH21673.'
+      },
+      {
+        sosa: 9, gen: 3, name: 'Josefa Gomes Patriota', kinship: 'Bisavó Paterna',
+        years: '1876–1971', place: 'Alagoa de Baixo (Sertânia), Pernambuco',
+        spouseSosa: 8, spouseName: 'Júlio José de Oliveira (#8)',
+        photo: 'Josefa.jpg', alts: ['josefa.jpg'],
+        bio: 'Matriarca do clã Gomes Patriota.'
+      },
+      {
+        sosa: 10, gen: 3, name: 'Rogério Magalhães da Silva Porto', kinship: 'Bisavô Paterno',
+        years: '1874–1943', place: 'Pedra, Pernambuco',
+        spouseSosa: 11, spouseName: 'Thereza de Siqueira Cavalcanti (#11)',
+        photo: 'Rogerio.jpg', alts: ['rogerio.jpg'],
+        bio: 'Prefeito de Pedra (1933–1936), comerciante, agricultor, prático de medicina e intelectual.'
+      },
+      {
+        sosa: 11, gen: 3, name: 'Thereza de Siqueira Cavalcanti', kinship: 'Bisavó Paterna',
+        years: '1880–1974', place: 'Pedra, Pernambuco',
+        spouseSosa: 10, spouseName: 'Rogério Magalhães da Silva Porto (#10)',
+        photo: 'Thereza.jpg', alts: ['thereza.jpg'],
+        bio: 'Descendente direta do Mestre de Campo Pantaleão de Siqueira Barbosa.'
+      },
+      {
+        sosa: 12, gen: 3, name: 'José Florêncio da Silva', kinship: 'Bisavô Materno',
+        years: '1868–1918+', place: 'Custódia, Pernambuco',
+        spouseSosa: 13, spouseName: 'Paulina Antonia de Góes (#13)',
+        photo: 'ZeFlorencio.jpg', alts: ['zeflorencio.jpg', 'Zeflorencio.jpg'],
+        bio: 'Pioneiro fundador ao norte de Custódia / Quitimbu.'
+      },
+      {
+        sosa: 13, gen: 3, name: 'Paulina Antonia de Góes', kinship: 'Bisavó Materna',
+        years: '1876–1916+', place: 'Flores, Pernambuco',
+        spouseSosa: 12, spouseName: 'José Florêncio da Silva (#12)',
+        photo: 'Paulina.jpg', alts: ['paulina.jpg'],
+        bio: 'Tronco Góes do Pajeú.'
+      },
+      {
+        sosa: 14, gen: 3, name: 'Francisco Gomes de Araújo', kinship: 'Bisavô Materno',
+        years: '1868–1939', place: 'Recife, Pernambuco',
+        spouseSosa: 15, spouseName: 'Maria Alves Magalhães (#15)',
+        photo: 'Francisco.jpg', alts: ['francisco.jpg'],
+        bio: 'Comerciante em Cimbres e subdelegado em Pedra. Elegante e bem-educado.'
+      },
+      {
+        sosa: 15, gen: 3, name: 'Maria Alves Magalhães (Dondon)', kinship: 'Bisavó Materna',
+        years: '1873–1897', place: 'Brejo da Madre de Deus, Pernambuco',
+        spouseSosa: 14, spouseName: 'Francisco Gomes de Araújo (#14)',
+        photo: 'Mariadondon.jpg', alts: ['mariadondon.jpg', 'MariaDondon.jpg'],
+        bio: 'Filha de Luiz Alves Maciel (#30) e Theresa de Jesus Porto Maciel (#31). mtDNA L3b1a11b1.'
+      },
+
+      // GERAÇÃO 4 — TRISAVÓS (#16 - #23)
+      {
+        sosa: 16, gen: 4, name: 'Clemente José de Oliveira', kinship: 'Trisavô Paterno',
+        years: 'c.1842–c.1906', place: 'Chicuru, Caruaru, Pernambuco',
+        spouseSosa: 17, spouseName: 'Joaquina Maria (#17)',
+        photo: 'CLEMENTE.jpg', alts: ['Clemente.jpg', 'clemente.jpg'],
+        bio: 'Linhagem patrilinear Oliveira em Caruaru. Y-DNA R-FTH21673.'
+      },
+      {
+        sosa: 17, gen: 4, name: 'Joaquina Maria (Mãe Dindinha)', kinship: 'Trisavó Paterna',
+        years: 'c.1844', place: 'Caruaru, Pernambuco',
+        spouseSosa: 16, spouseName: 'Clemente José de Oliveira (#16)',
+        photo: 'Joaquina.jpg', alts: ['joaquina.jpg'],
+        missing: true,
+        note: 'Sem fotografia preservada até o momento (Mãe Dindinha · Joaquina.jpg).',
+        bio: 'Joaquina Maria do Espírito Santo, lembrada na família como Mãe Dindinha.'
+      },
+      {
+        sosa: 18, gen: 4, name: 'Ten. Caetano Gomes Patriota', kinship: 'Trisavô Paterno',
+        years: '1845–1923', place: 'Flores, Vila de Carnaíba, Pernambuco',
+        spouseSosa: 19, spouseName: 'Thereza Joaquina de Jesus (#19)',
+        photo: 'Caetano.jpg', alts: ['caetano.jpg'],
+        bio: 'Tenente do tronco Gomes Patriota na Ribeira do Pajeú.'
+      },
+      {
+        sosa: 19, gen: 4, name: 'Thereza Joaquina de Jesus (Deda)', kinship: 'Trisavó Paterna',
+        years: '1845–1937', place: 'Sertânia, Pernambuco',
+        spouseSosa: 18, spouseName: 'Ten. Caetano Gomes Patriota (#18)',
+        photo: 'Deda.jpg', alts: ['deda.jpg'],
+        bio: 'Consorte do Ten. Caetano Gomes Patriota (#18).'
+      },
+      {
+        sosa: 20, gen: 4, name: 'José Magalhães da Silva Porto (Cazuza)', kinship: 'Trisavô Paterno',
+        years: '1851–1885', place: 'Cimbres, Pernambuco',
+        spouseSosa: 21, spouseName: 'Maria de Siqueira (#21)',
+        photo: 'Cazuza.jpg', alts: ['cazuza.jpg'],
+        bio: 'Filho de José Magalhães da Silva (#40/#62, Castelões, Penafiel) e Thereza de Jesus Porto Cavalcanti (#41/#63).'
+      },
+      {
+        sosa: 21, gen: 4, name: 'Maria de Siqueira', kinship: 'Trisavó Paterna',
+        years: '1845–1903', place: 'Pedra, Pernambuco',
+        spouseSosa: 20, spouseName: 'José Magalhães da Silva Porto (#20)',
+        photo: 'MariaSiq.jpg', alts: ['mariasiq.jpg'],
+        bio: 'Maria de Siqueira Cavalcanti, consorte de José Magalhães da Silva Porto (#20).'
+      },
+      {
+        sosa: 22, gen: 4, name: 'Siqueira Dario (Dario de Siqueira Barboza)', kinship: 'Trisavô Paterno',
+        years: '1851–1906', place: 'Pedra, Pernambuco',
+        spouseSosa: 23, spouseName: 'Joaquina Leite de Siqueira Cavalcanti (#23)',
+        photo: 'SiqueiraDARIO.jpg', alts: ['siqueiradario.jpg', 'SiqueiraDario.jpg'],
+        bio: 'Patriarca do ramo Siqueira Barboza em Pedra, Pernambuco.'
+      },
+      {
+        sosa: 23, gen: 4, name: 'Joaquina Leite de Siqueira Cavalcanti', kinship: 'Trisavó Paterna',
+        years: '1847–1936', place: 'Paudalho, Pernambuco',
+        spouseSosa: 22, spouseName: 'Siqueira Dario (#22)',
+        photo: 'JoaquinaSiq.jpg', alts: ['joaquinasiq.jpg'],
+        ribbon: 'Recuperada de foto de 1917',
+        note: 'Fotografia histórica recuperada de retrato original datado de 1917.',
+        bio: 'Natural de Paudalho, radicada em Pedra, Pernambuco.'
+      }
+    ];
+
+    const GEN_LABELS = {
+      1: { title: '1ª Geração — Pais', range: 'Sosa #2 – #3' },
+      2: { title: '2ª Geração — Avós', range: 'Sosa #4 – #7' },
+      3: { title: '3ª Geração — Bisavós', range: 'Sosa #8 – #15' },
+      4: { title: '4ª Geração — Trisavós', range: 'Sosa #16 – #23' }
+    };
+
+    const BY_SOSA = Object.fromEntries(GALLERY_DATA.map(a => [a.sosa, a]));
+    let viewMode = 'couples';
+    let filteredList = [...GALLERY_DATA];
+    let currentModalSosa = null;
+
+    function placeholderHTML(anc) {
+      return `
+        <div class="portrait-placeholder">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="6" y="6" width="88" height="88" stroke="#4d4845" stroke-width="2" stroke-dasharray="4 3"/>
+            <circle cx="50" cy="37" r="15" stroke="#4d4845" stroke-width="2.5"/>
+            <path d="M23 82 C23 65 35 56 50 56 C65 56 77 65 77 82" stroke="#4d4845" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <div class="placeholder-title">${anc.missing ? 'Sem Fotografia Preservada' : 'Foto não encontrada'}</div>
+          <div class="placeholder-sub">${anc.photo}</div>
+        </div>
+      `;
+    }
+
+    function onPhotoError(img, sosa) {
+      const anc = BY_SOSA[sosa];
+      if (!anc) return;
+      const idx = parseInt(img.dataset.altIdx || '0', 10);
+      const alts = anc.alts || [];
+      if (idx < alts.length) {
+        img.dataset.altIdx = String(idx + 1);
+        img.src = alts[idx];
+      } else {
+        img.parentElement.innerHTML = placeholderHTML(anc);
+      }
+    }
+
+    function cardHTML(anc) {
+      return `
+        <article class="portrait-card" onclick="openModal(${anc.sosa})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal(${anc.sosa});}">
+          <div class="portrait-frame">
+            <span class="sosa-badge">#${anc.sosa}</span>
+            ${anc.ribbon ? `<span class="photo-ribbon">${anc.ribbon}</span>` : ''}
+            <div class="portrait-inner">
+              <img class="portrait-img" src="${anc.photo}" alt="${anc.name}" loading="lazy" data-alt-idx="0" onerror="onPhotoError(this, ${anc.sosa})">
+            </div>
+          </div>
+          <div class="portrait-caption">
+            <div class="portrait-kinship">${anc.kinship}</div>
+            <h3 class="portrait-name">${anc.name}</h3>
+            <div class="portrait-years">${anc.years}</div>
+            <div class="portrait-place">${anc.place}</div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderGallery() {
+      const q = (document.getElementById('search-input').value || '').trim().toLowerCase();
+      filteredList = GALLERY_DATA.filter(a => {
+        if (!q) return true;
+        return `#${a.sosa} ${a.sosa} ${a.name} ${a.kinship} ${a.years} ${a.place} ${a.photo}`.toLowerCase().includes(q);
+      });
+
+      const root = document.getElementById('gallery-root');
+      if (!filteredList.length) {
+        root.innerHTML = `<div class="empty-state">Nenhum retrato encontrado para "${q}".</div>`;
+        return;
+      }
+
+      let html = '';
+      [1, 2, 3, 4].forEach(g => {
+        const items = filteredList.filter(a => a.gen === g);
+        if (!items.length) return;
+
+        html += `
+          <section class="generation-section" id="gen-${g}">
+            <div class="gen-header">
+              <h2 class="gen-title">${GEN_LABELS[g].title}</h2>
+              <span class="gen-badge">${GEN_LABELS[g].range}</span>
+            </div>
+        `;
+
+        if (viewMode === 'couples') {
+          const map = new Map();
+          items.forEach(item => {
+            const key = item.sosa % 2 === 0 ? item.sosa : item.sosa - 1;
+            if (!map.has(key)) map.set(key, []);
+            map.get(key).push(item);
+          });
+          const entries = Array.from(map.entries()).sort((a, b) => a[0] - b[0]);
+          html += `<div class="couples-grid ${entries.length === 1 ? 'single' : ''}">`;
+          entries.forEach(([key, members]) => {
+            members.sort((a, b) => a.sosa - b.sosa);
+            const childSosa = Math.floor(key / 2);
+            const child = BY_SOSA[childSosa];
+            const label = childSosa === 1
+              ? 'Pais de Hélio Magalhães de Oliveira (#1)'
+              : (child ? `Pais de ${child.name} (#${childSosa})` : `Casal #${key} & #${key + 1}`);
+            html += `
+              <div class="couple-plate">
+                <div class="couple-header">
+                  <span class="couple-label">${label}</span>
+                  <span class="couple-sosa">Sosa #${key} &amp; #${key + 1}</span>
+                </div>
+                <div class="couple-pair">
+                  ${members.map(cardHTML).join('')}
+                </div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+        } else {
+          html += `<div class="sosa-grid">${items.map(cardHTML).join('')}</div>`;
+        }
+
+        html += `</section>`;
+      });
+
+      root.innerHTML = html;
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function setMode(m) {
+      viewMode = m;
+      document.getElementById('btn-couples').classList.toggle('active', m === 'couples');
+      document.getElementById('btn-grid').classList.toggle('active', m === 'grid');
+      renderGallery();
+    }
+
+    function jumpToGen(id, btn) {
+      document.querySelectorAll('.nav-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function openModal(sosa) {
+      const anc = BY_SOSA[sosa];
+      if (!anc) return;
+      currentModalSosa = sosa;
+
+      document.getElementById('modal-media').innerHTML =
+        `<img src="${anc.photo}" alt="${anc.name}" data-alt-idx="0" onerror="onPhotoError(this, ${anc.sosa})">`;
+      document.getElementById('modal-file').textContent = anc.photo;
+      document.getElementById('modal-bin').textContent = `Binário: ${anc.sosa.toString(2)}₂`;
+      document.getElementById('modal-sosa').textContent = `#${anc.sosa}`;
+      document.getElementById('modal-gen').textContent = `Geração ${anc.gen}`;
+      document.getElementById('modal-name').textContent = anc.name;
+      document.getElementById('modal-kinship').textContent = anc.kinship;
+      document.getElementById('modal-years').textContent = anc.years;
+      document.getElementById('modal-place').textContent = anc.place;
+      document.getElementById('modal-spouse').textContent = anc.spouseName || '—';
+      document.getElementById('modal-bio').textContent = anc.bio;
+
+      const noteEl = document.getElementById('modal-note');
+      if (anc.note) {
+        noteEl.textContent = anc.note;
+        noteEl.style.display = 'block';
+      } else {
+        noteEl.style.display = 'none';
+      }
+
+      setRelBtn('rel-father', 'Pai', anc.sosa * 2);
+      setRelBtn('rel-mother', 'Mãe', anc.sosa * 2 + 1);
+      setRelBtn('rel-spouse', 'Cônjuge', anc.spouseSosa);
+      setRelBtn('rel-child', 'Descendente', Math.floor(anc.sosa / 2));
+
+      document.getElementById('portrait-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function setRelBtn(id, label, targetSosa) {
+      const btn = document.getElementById(id);
+      const t = BY_SOSA[targetSosa];
+      if (t) {
+        btn.disabled = false;
+        btn.textContent = `${label}: #${targetSosa} ${t.name.split(' ')[0]}`;
+        btn.onclick = () => openModal(targetSosa);
+      } else if (targetSosa === 1) {
+        btn.disabled = true;
+        btn.textContent = `${label}: #1 Hélio (de cujus)`;
+        btn.onclick = null;
+      } else {
+        btn.disabled = true;
+        btn.textContent = `${label}: #${targetSosa} (fora da galeria)`;
+        btn.onclick = null;
+      }
+    }
+
+    function stepModal(delta) {
+      if (currentModalSosa === null || !filteredList.length) return;
+      const i = filteredList.findIndex(a => a.sosa === currentModalSosa);
+      if (i === -1) return;
+      openModal(filteredList[(i + delta + filteredList.length) % filteredList.length].sosa);
+    }
+
+    function closeModal() {
+      document.getElementById('portrait-modal').classList.remove('open');
+      document.body.style.overflow = '';
+      currentModalSosa = null;
+    }
+
+    document.addEventListener('keydown', e => {
+      if (currentModalSosa === null) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') stepModal(-1);
+      if (e.key === 'ArrowRight') stepModal(1);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderGallery();
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
